@@ -17,7 +17,7 @@ const getWeatherInfo = async (area, container) => {
         weatherMain.classList.add('weather-main');
         const weatherInfo = document.createElement('p');
         weatherMain.src = `http://openweathermap.org/img/wn/${res.weather[0].icon}@2x.png`
-        weatherInfo.innerHTML = `<strong>${res.name}</strong> <strong>기온🌡</strong> ${(res.main.temp - 273.15).toFixed(1)}℃ || <strong>습도💧</strong> ${res.main.humidity}%`;
+        weatherInfo.innerHTML = `<strong>${res.name}</strong><br><strong>기온🌡</strong> ${(res.main.temp - 273.15).toFixed(1)}℃ || <strong>습도💧</strong> ${res.main.humidity}%`;
         weatherCard.appendChild(weatherMain);
         weatherCard.appendChild(weatherInfo);
         container.innerHTML = "";
@@ -33,6 +33,7 @@ const searchWeather = (e) => {
     const searchInput = document.querySelector('.search-input');
     console.log(searchInput.value);
     getWeatherInfo(searchInput.value, document.querySelector('.weather-container'));
+    searchInput.value = '';
 }
 
 searchBtn.addEventListener('click', searchWeather);
